@@ -1,13 +1,13 @@
 ###
 # TexUS makefile
 
-EXE=TEXUS.EXE
+EXE=texus.exe
 CROSS_PLATFORM=i586-pc-msdosdjgpp-
-CC=$(DJGPP)/$(CROSS_PLATFORM)gcc
-AR=$(DJGPP)/$(CROSS_PLATFORM)ar
-LD=$(DJGPP)/$(CROSS_PLATFORM)ld
-STRIP=$(DJGPP)/$(CROSS_PLATFORM)strip
-RANLIB=$(DJGPP)/$(CROSS_PLATFORM)ranlib
+CC=$(CROSS_PLATFORM)gcc
+AR=$(CROSS_PLATFORM)ar
+LD=$(CROSS_PLATFORM)ld
+STRIP=$(CROSS_PLATFORM)strip
+RANLIB=$(CROSS_PLATFORM)ranlib
 
 BUILDDIR=build
 
@@ -48,12 +48,11 @@ init:
 	mkdir -p $(BUILDDIR)
 
 $(EXE): $(PARTS)
-	$(CC) -o $@ $^
-	$(STRIP) $@
+	$(CC) -s -o $@ $^
 
 $(BUILDDIR)/%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(BUILDDIR)/
-	rm -f $(EXE) TEXUS.exe
+	rm -f $(EXE)

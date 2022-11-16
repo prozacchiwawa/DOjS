@@ -7,6 +7,7 @@
 #include <ctype.h>
 #include <dirent.h>
 #include <dpmi.h>
+#include <glide.h>
 #include <go32.h>
 #include <io.h>
 #include <math.h>
@@ -28,8 +29,10 @@
 
 #include "DOjS.h"
 #include "intarray.h"
+#include "bytearray.h"
 #include "util.h"
 #include "zipfile.h"
+#include "bitmap.h"
 
 // symbols without include file from libgcc
 extern BOOL _watt_do_exit;
@@ -94,7 +97,9 @@ unlink
 utimes
 vfprintf
 vsnprintf
+vsprintf
 write
+exit
 
 // time
 clock
@@ -102,6 +107,7 @@ delay
 gettimeofday
 gmtime
 localtime
+localtime_r
 sleep
 strftime
 time
@@ -133,6 +139,7 @@ strstr
 strtol
 strtoll
 strtoul
+stpcpy
 
 // memory/system
 abort
@@ -156,6 +163,10 @@ pow
 exp
 ldexp
 floor
+tan
+sqrt
+cos
+sin
 
 // gcc/djgpp/lowlevel
 __divdi3
@@ -261,6 +272,10 @@ get_transformation_matrix_f
 get_x_rotate_matrix_f
 get_y_rotate_matrix_f
 get_z_rotate_matrix_f
+getr
+getg
+getb
+geta
 geta_depth
 getb_depth
 getg_depth
@@ -306,6 +321,7 @@ check_zipfile1
 check_zipfile2
 DOjS
 dojs_do_file
+dojs_do_zipfile
 read_zipfile1
 read_zipfile2
 ut_clone_string
@@ -317,6 +333,14 @@ IntArray_create
 IntArray_destroy
 IntArray_fromStruct
 IntArray_push
+
+// ByteArray
+ByteArray_create
+ByteArray_destroy
+ByteArray_fromStruct
+ByteArray_push
+
+Bitmap_fromRGBA
 
 // watt32
 _watt_do_exit
@@ -334,6 +358,7 @@ geteuid
 getgid
 gethostbyname
 getnameinfo
+getpeername
 getpid
 getsockname
 getsockopt
@@ -356,3 +381,64 @@ socket
 tcgetattr
 tcsetattr
 watt_sock_init
+
+// 3dfx GLIDE
+grSstSelect
+grTexSource
+guFogGenerateExp2
+grGetString
+grDepthMask
+grFogMode
+grDrawPoint
+grDisable
+grDrawVertexArrayContiguous
+grGlideSetState
+grTexCombine
+grDrawTriangle
+grFlush
+guFogGenerateExp
+grLfbReadRegion
+grGet
+grAlphaBlendFunction
+grTexFilterMode
+grColorMask
+grTexClampMode
+grLfbUnlock
+grTexMaxAddress
+grAlphaTestFunction
+grGlideGetState
+grGlideInit
+grGlideShutdown
+grTexDownloadMipMapLevel
+grBufferClear
+grFogColorValue
+grAlphaTestReferenceValue
+grLfbWriteRegion
+grDepthBufferFunction
+grEnable
+grVertexLayout
+grBufferSwap
+grCullMode
+grRenderBuffer
+guFogGenerateLinear
+grTexDownloadTable
+grTexMinAddress
+grLfbLock
+grTexDownloadMipMapLevelPartial
+grTexMipMapMode
+grClipWindow
+grColorCombine
+grDepthBufferMode
+grTexTextureMemRequired
+grReset
+grTexLodBiasValue
+grDrawLine
+grDepthBiasLevel
+grAlphaCombine
+grConstantColorValue
+grSstWinClose
+grCoordinateSpace
+grLfbWriteColorFormat
+grDitherMode
+grSstWinOpen
+grFogTable

@@ -1,7 +1,15 @@
 // taken from https://github.com/jeromeetienne/jquery-qrcode
 
-exports.MakeQR = function (bmw, bmh, text) {
-	Println("1");
+/**
+ * Create a QR code as Bitmap
+ * 
+ * @param {Number} bmw width of the wanted bitmap
+ * @param {Number} bmh height of the wanted bitmap
+ * @param {String} text the text to encode into the QR code.
+ * 
+ * @returns {Bitmap} a bitmap containing a QR code.
+ */
+function MakeQR(bmw, bmh, text) {
 	// create the qrcode itself
 	var qrcode = new QRCode(-1, QRErrorCorrectLevel.H);
 	qrcode.addData(text);
@@ -1268,3 +1276,7 @@ QRBitBuffer.prototype = {
 		this.length++;
 	}
 };
+
+// export functions and version
+exports.__VERSION__ = 2;
+exports.MakeQR = this.MakeQR;
